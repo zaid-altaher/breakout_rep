@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 7000 bytes
+Current configuration : 7329 bytes
 !
-! Last configuration change at 13:11:36 UTC Tue Feb 23 2021 by developer
+! Last configuration change at 07:57:59 UTC Wed Feb 24 2021 by developer
 !
 version 16.11
 service timestamps debug datetime msec
@@ -17,6 +17,8 @@ hostname csr1000v-1
 boot-start-marker
 boot-end-marker
 !
+!
+vrf definition local_vrfs
 !
 no logging console
 enable secret 9 $9$4fdKs44VXjq2x.$Zahb8Zy6RQwM9ONMvWkNq4k3igSv4v2KkH/uUuqr09s
@@ -140,7 +142,7 @@ crypto pki certificate chain SLA-TrustPoint
   D697DF7F 28
   	quit
 !
-license udi pid CSR1000V sn 98LTFEG7IVO
+license udi pid CSR1000V sn 9HTJ99JUTI6
 license boot level ax
 diagnostic bootup level minimal
 !
@@ -179,9 +181,25 @@ redundancy
 ! 
 !
 !
-interface Loopback10
+interface Loopback110
  description Pod Number 10
- ip address 10.111.10.1 255.255.255.255
+ ip address 10.111.10.2 255.255.255.255
+!
+interface Loopback1110
+ description Pod Number 1110
+ ip address 10.0.0.11 255.255.255.255
+!
+interface Loopback1210
+ description Pod Number 1210
+ ip address 10.0.0.12 255.255.255.255
+!
+interface Loopback1310
+ description Pod Number 1310
+ ip address 10.0.0.13 255.255.255.255
+!
+interface Loopback1410
+ description Pod Number 1410
+ ip address 10.0.0.14 255.255.255.255
 !
 interface GigabitEthernet1
  description MANAGEMENT INTERFACE - DON'T TOUCH ME
@@ -245,10 +263,7 @@ line vty 0 4
  login local
  transport input ssh
 !
-ntp server 10.11.10.65
-ntp server 10.12.10.65
-ntp server 10.13.10.65
-ntp server 10.14.10.65
+ntp server 10.111.10.66
 !
 !
 !
